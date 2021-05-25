@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState, useEffect} from 'react';
+import ArticleList from './Components/ArticleList';
 
 function App() {
   const [articles, setArticle] = useState([])
@@ -22,15 +23,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Django and ReactJS Blog App</h1>
-        {articles.map(article =>{
-          return (
-          <div key={article.id}>
-              <h2>{article.title}</h2>
-              <p>{article.descripition}</p>
-          </div>
-          )
-          
-        })}
+        <br/>
+        <br/>
+
+        <ArticleList articles={articles} />
+        
       </header>
     </div>
   );
