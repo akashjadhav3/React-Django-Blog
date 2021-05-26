@@ -2,9 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import {useState, useEffect} from 'react';
 import ArticleList from './Components/ArticleList';
+import Form from './Components/Form';
 
 function App() {
   const [articles, setArticle] = useState([])
+  const [editArticle, setEditArticle] = useState(null)
 
   useEffect(()=>{
     fetch('http://localhost:8000/api/articles/', {
@@ -19,6 +21,10 @@ function App() {
     .catch(error => console.log(error))
   },[])
 
+  const editBtn = (article) => {
+    setEditArticle(article)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -26,7 +32,9 @@ function App() {
         <br/>
         <br/>
 
-        <ArticleList articles={articles} />
+        <ArticleList articles={articles} editBtn={editBtn} />
+        {editArticle ? <Form article={editArticle} /> : null}
+        
         
       </header>
     </div>
