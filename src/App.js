@@ -25,6 +25,19 @@ function App() {
     setEditArticle(article)
   }
 
+  //reflect updated data in without refresh quickly
+  const UpdateInformation = (article) =>{
+    const new_article = articles.map(myarticle =>{
+      if (myarticle.id === article.id){
+        return article;
+      }else {
+        return myarticle;
+      }
+    })
+    setArticle(new_article)
+
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -33,7 +46,7 @@ function App() {
         <br/>
 
         <ArticleList articles={articles} editBtn={editBtn} />
-        {editArticle ? <Form article={editArticle} /> : null}
+        {editArticle ? <Form article={editArticle} UpdateInformation={UpdateInformation} /> : null}
         
         
       </header>
